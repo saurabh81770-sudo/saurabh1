@@ -71,9 +71,20 @@ async def clear_db(client, message):
     
 @app.on_message(filters.command("login"))
 async def generate_session(_, message):
+
+    user_id = message.from_user.id
+
+    # 🔐 PREMIUM CHECK (ADD THIS)
+    if not await is_premium(user_id):
+        return await message.reply(
+            "❌ This feature is only available for premium users.\n"
+            "Please upgrade to premium to use login."
+        )
+
     joined = await subscribe(_, message)
     if joined == 1:
         return
+
         
     # user_checked = await chk_user(message, message.from_user.id)
     # if user_checked == 1:
