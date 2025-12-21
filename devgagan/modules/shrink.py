@@ -95,7 +95,7 @@ async def token_handler(client, message):
     param = message.command[1] if len(message.command) > 1 else None
     freecheck = await chk_user(message, user_id)
     if freecheck != 1:
-        await message.reply("You are a premium user no need of token 😉")
+        await message.reply("You are a premium user😉")
         return
  
      
@@ -121,7 +121,7 @@ async def smart_handler(client, message):
      
     freecheck = await chk_user(message, user_id)
     if freecheck != 1:
-        await message.reply("You are a premium user no need of token 😉")
+        await message.reply("You are a premium user😉")
         return
     if await is_user_verified(user_id):
         await message.reply("✅ Your free session is already active enjoy!")
