@@ -92,7 +92,7 @@ Example: +91xxxxxxx , +1xxxxxxx
 
     phone_number = number.text
     try:
-        await message.reply("📲 Sending OTP...")
+        await message.reply("📲 Sending verification code...")
         client = Client(f"session_{user_id}", api_id, api_hash)
         
         await client.connect()
@@ -112,9 +112,10 @@ Example: +91xxxxxxx , +1xxxxxxx
     """📱 Verification Code Sent!
 
 ━━━━━━━━━━━━━━━━━━━━
-HOW TO ENTER:
+  HOW TO ENTER:
+--------------------------
 • Enter the OTP with SPACES between each digit
-• Example: If code is 12345, type: 1 2 3 4 5 "
+• Example:If code is 12345, type: 1 2 3 4 5"
 
 Enter your OTP:""",
     filters=filters.text,
